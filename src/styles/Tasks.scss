@@ -1,0 +1,142 @@
+.tasks-page {
+  padding: 2rem;
+
+  .sidebar-card {
+    border-radius: 1rem;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.05);
+    padding: 2rem;
+    position: sticky;
+    top: 2rem;
+
+    h4,
+    h5 {
+      font-weight: 600;
+    }
+
+    form {
+      input,
+      textarea,
+      select {
+        border-radius: 0.5rem;
+        border: 1px solid #ddd;
+        padding: 0.6rem 1rem;
+        transition: all 0.2s ease-in-out;
+
+        &:focus {
+          outline: none;
+          border-color: #007bff;
+          box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+        }
+      }
+
+      .form-check {
+        display: flex;
+        align-items: center; // vertically align checkbox and label
+        gap: 0.5rem; // space between checkbox and label
+        margin-top: 0.5rem;
+
+        input[type="checkbox"] {
+          margin: 0; // remove default margin
+          accent-color: #ffc107; // gold color
+          width: 1.2rem;
+          height: 1.2rem;
+        }
+
+        label {
+          margin: 0; // remove default margin
+          font-weight: 500;
+        }
+      }
+
+      button {
+        border-radius: 0.5rem;
+        font-weight: 500;
+        transition: all 0.2s ease;
+
+        &:hover {
+          transform: translateY(-2px);
+        }
+      }
+    }
+
+    hr {
+      margin: 1.5rem 0;
+      border-color: #eee;
+    }
+  }
+
+  .task-card {
+    border-radius: 1rem;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+
+    &:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    &.completed-task {
+      background-color: rgba(144, 238, 144, 0.10); // 10% opacity
+    }
+
+    .card-header {
+      font-weight: 500;
+
+      .btn-link {
+        &:hover {
+          transform: scale(1.1);
+        }
+      }
+    }
+
+    .card-body {
+      .d-flex.text-muted.small {
+        margin: 0; // remove margin for date/time
+      }
+
+      .text-justify {
+        text-align: justify;
+      }
+
+      .button-group {
+        display: flex;
+        flex-wrap: nowrap; // keep buttons in single row
+        gap: 0.5rem;
+        justify-content: flex-start;
+        min-width: 100%;
+      }
+
+      .btn {
+        flex: 1; // equal width buttons
+        white-space: nowrap; // prevent wrapping
+      }
+    }
+  }
+
+  .spinner-border {
+    width: 3rem;
+    height: 3rem;
+  }
+
+  .text-muted {
+    font-style: italic;
+    text-align: center;
+    margin-top: 2rem;
+  }
+}
+
+.modal-content {
+  border-radius: 1rem;
+  padding: 1.5rem;
+
+  .modal-header,
+  .modal-footer {
+    border-color: #444;
+  }
+
+  .modal-footer button {
+    border-radius: 0.5rem;
+  }
+}
