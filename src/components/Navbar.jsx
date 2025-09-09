@@ -9,7 +9,18 @@ import { Link } from "react-router-dom";
 import { useContext, useState } from "react";
 import AuthContext from "../context/AuthContext";
 import ThemeContext from "../context/ThemeContext";
-import { Sun, Moon, BoxArrowRight } from "react-bootstrap-icons";
+
+// React Icons
+import {
+  FaHome,
+  FaTasks,
+  FaUserCircle,
+  FaSignInAlt,
+  FaSignOutAlt,
+} from "react-icons/fa";
+import { Sun, Moon } from "react-bootstrap-icons"; // keep same for toggle
+import LogoLight from "../assets/LOGO light.png";
+import LogoDark from "../assets/LOGO dark.png";
 
 function Navbar() {
   const { isAuthenticated, logout, user } = useContext(AuthContext);
@@ -36,33 +47,103 @@ function Navbar() {
         style={{ zIndex: 1030 }}
       >
         <Container>
-          {/* Brand */}
-          <RBNavbar.Brand as={Link} to="/" className="fw-bold">
+          {/* Brand with Logo */}
+          <RBNavbar.Brand
+            as={Link}
+            to="/"
+            className="d-flex align-items-center fw-bold gap-2"
+          >
+            {theme === "dark" ? (
+              <img
+                src={LogoLight}
+                alt="Logo"
+                width="32"
+                height="32"
+                className="d-inline-block align-top"
+              />
+            ) : (
+              <img
+                src={LogoDark}
+                alt="Logo"
+                width="32"
+                height="32"
+                className="d-inline-block align-top"
+              />
+            )}
             Task Manager
           </RBNavbar.Brand>
 
           {/* Mobile toggle */}
           <RBNavbar.Toggle aria-controls="main-navbar" className="border-0" />
           <RBNavbar.Collapse id="main-navbar">
-            {/* Left links */}
-            <Nav className="me-auto">
-              <Nav.Link as={Link} to="/">
-                Home
+            {/* Centered Nav Links */}
+            <Nav className="mx-auto">
+              <Nav.Link
+                as={Link}
+                to="/"
+                className="d-flex align-items-center gap-1"
+              >
+                <FaHome /> Home
               </Nav.Link>
               {isAuthenticated && (
-                <Nav.Link as={Link} to="/tasks">
-                  Tasks
+                <Nav.Link
+                  as={Link}
+                  to="/tasks"
+                  className="d-flex align-items-center gap-1"
+                >
+                  <FaTasks /> Tasks
                 </Nav.Link>
               )}
             </Nav>
 
-            {/* Right controls */}
+            {/* Right Controls */}
             <div className="d-flex align-items-center gap-2">
-              {/* Theme toggle */}
+              {isAuthenticated ? (
+                <>
+                  {/* User Avatar */}
+                  <div
+                    className="d-flex align-items-center justify-content-center border rounded px-2 py-1"
+                    style={{
+                      minWidth: "45px",
+                      backgroundColor: theme === "dark" ? "#333333ff" : "#e9ecef",
+                      color: theme === "dark" ? "#fff" : "#000",
+                      fontWeight: "bold",
+                      fontSize: "14px",
+                    }}
+                    title={user.email}
+                  >
+                    <FaUserCircle className="me-1" /> {getUserInitials()}
+                  </div>
+
+                  {/* Logout button */}
+                  <Button
+                    variant={
+                      theme === "dark" ? "outline-light" : "outline-dark"
+                    }
+                    size="sm"
+                    className="d-flex align-items-center gap-1 border rounded px-3"
+                    onClick={() => setShowLogoutModal(true)}
+                  >
+                    <FaSignOutAlt /> Logout
+                  </Button>
+                </>
+              ) : (
+                <Button
+                  as={Link}
+                  to="/login"
+                  variant={theme === "dark" ? "outline-light" : "primary"}
+                  size="sm"
+                  className="d-flex align-items-center gap-1 border rounded px-3"
+                >
+                  <FaSignInAlt /> Login
+                </Button>
+              )}
+
+              {/* Theme toggle (at the end) */}
               <Button
                 variant={theme === "dark" ? "outline-light" : "outline-dark"}
                 size="sm"
-                className="rounded-circle d-flex align-items-center justify-content-center p-2"
+                className="d-flex align-items-center gap-1 border rounded px-3"
                 onClick={toggleTheme}
                 title={
                   theme === "dark"
@@ -71,47 +152,14 @@ function Navbar() {
                 }
               >
                 {theme === "dark" ? <Sun size={18} /> : <Moon size={18} />}
+                {theme === "dark" ? "Light" : "Dark"}
               </Button>
-
-              {isAuthenticated ? (
-                <>
-                  {/* User Avatar */}
-                  <div
-                    className="rounded-circle d-flex align-items-center justify-content-center"
-                    style={{
-                      width: "40px",
-                      height: "40px",
-                      backgroundColor: theme === "dark" ? "#6c757d" : "#e9ecef",
-                      color: theme === "dark" ? "#fff" : "#000",
-                      fontWeight: "bold",
-                      fontSize: "14px",
-                    }}
-                    title={user.email}
-                  >
-                    {getUserInitials()}
-                  </div>
-
-                  {/* Logout button */}
-                  <Button
-                    variant="outline-danger"
-                    size="sm"
-                    onClick={() => setShowLogoutModal(true)}
-                  >
-                    <BoxArrowRight className="me-1" />
-                    Logout
-                  </Button>
-                </>
-              ) : (
-                <Button as={Link} to="/login" variant="primary" size="sm">
-                  Login
-                </Button>
-              )}
             </div>
           </RBNavbar.Collapse>
         </Container>
       </RBNavbar>
 
-      {/* Spacer to avoid overlap */}
+      {/* Spacer */}
       <div style={{ paddingTop: "70px" }} />
 
       {/* Logout Modal */}

@@ -134,7 +134,7 @@ function Tasks() {
     <div className="tasks-page">
       {/* Mobile Header */}
       {isMobile && (
-        <div className="d-flex justify-content-between align-items-center mb-3 sticky-top p-3 bg-white shadow-sm">
+        <div className="d-flex justify-content-between align-items-center mb-3 sticky-top p-3  shadow-sm">
           <h4 className="mb-0">My Tasks</h4>
           <Button
             variant="outline-primary"
