@@ -267,10 +267,19 @@ function Tasks() {
           )}
           {error && <div className="alert alert-danger">{error}</div>}
 
-          {filteredTasks.length === 0 && !loading ? (
+          {!loading && filteredTasks.length === 0 ? (
             <div className="text-center my-5 text-muted">
-              <h5>No tasks found</h5>
-              <p>Try changing your filters or add a new task</p>
+              {tasks.length === 0 ? (
+                <>
+                  <h5>No tasks yet</h5>
+                  <p>Add your first task to get started</p>
+                </>
+              ) : (
+                <>
+                  <h5>No tasks found</h5>
+                  <p>Try changing your filters or add a new task</p>
+                </>
+              )}
             </div>
           ) : (
             <>
