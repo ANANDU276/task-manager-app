@@ -59,6 +59,9 @@ function TaskDetails() {
                   {task.completed ? "Completed" : "Pending"}
                 </span>
               </p>
+               <h5 className="mb-3">
+                <strong>Title:</strong> {task.title || "No Title"}
+              </h5>
 
               <p className="mb-3">
                 <strong>Description:</strong> {task.description || "No description"}

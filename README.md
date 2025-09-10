@@ -23,6 +23,7 @@ Built with Vite for fast development
 - [React Router v6](https://reactrouter.com/)
 - [Bootstrap](https://getbootstrap.com/)
 - [React-Bootstrap](https://react-bootstrap.github.io/)
+- [SCSS](https://sass-lang.com/)
 - [Axios](https://axios-http.com/)
 - [Context API + useReducer](https://react.dev/reference/react/useReducer)
 - [Framer Motion](https://www.framer.com/motion/)

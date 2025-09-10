@@ -18,7 +18,7 @@ import {
   FaSignInAlt,
   FaSignOutAlt,
 } from "react-icons/fa";
-import { Sun, Moon } from "react-bootstrap-icons"; // keep same for toggle
+import { Sun, Moon } from "react-bootstrap-icons"; 
 import LogoLight from "../assets/LOGO light.png";
 import LogoDark from "../assets/LOGO dark.png";
 
